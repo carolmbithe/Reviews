@@ -26,6 +26,14 @@ def new_project(request):
         form = NewProjectForm()
     return render(request, 'new_project.html', {"form": form})
 
+
+def project(request,project_id):
+    try:
+        project=Project.objects.get(id=project_id)
+    except ObjectDoesNotExist:
+        raise Http404()
+    return render(request,"project.html",{"project":project})
+
 def profile(request):
     current_user=request.user
     projects=Project.objects.filter(profile=current_user).all()
