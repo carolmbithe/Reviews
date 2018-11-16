@@ -4,6 +4,7 @@ from django.http import HttpResponse,Http404
 from .models import Profile,Project
 from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
+@login_required(login_url='/accounts/login/')
 def index(request):
     projects=Project.get_projects()
     return render(request,'index.html',{"projects":projects})

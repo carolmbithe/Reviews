@@ -7,11 +7,12 @@
  <h1>This is the index page </h1>
  <div class="row">
    {% for project in projects %}
-   <div class="col-md-4">
+   <div class="col-md-6">
 
       <p>{{project.title}}</p>
+      <img src="{{project.image.url}}" class="img-responsive" alt="Image">
       <p>{{project.description}}</p>
-
+      <a href="{{project.link}}"> {{project.link}}</a>
       {% empty %}
   <div class="row">
     <h2 class="text-center">There are no Projects yet</h2>
