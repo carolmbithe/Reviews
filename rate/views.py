@@ -4,7 +4,10 @@ from django.http import HttpResponse,Http404
 from .models import Profile,Project
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import NewProjectForm,NewProfileForm
-
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import  Project
+from .serializer import ProjectSerializer
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
@@ -74,3 +77,9 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
+
+class ProjectList(APIView):
+    def get(self,request,format=None):
+        all_projects=Project.objects.all()
+        serializers=ProjectSerializer(all_projects,many=True)
+        return Response(serializers.data)
