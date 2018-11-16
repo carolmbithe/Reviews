@@ -1,4 +1,26 @@
 {%extends 'base.html'%}
 
 
-{% block content %} <h1>This is the index page </h1>{%endblock%}
+{% block content %}
+{{ block.super}}
+<div class="container">
+ <h1>This is the index page </h1>
+ <div class="row">
+   {% for project in projects %}
+   <div class="col-md-4">
+
+      <p>{{project.title}}</p>
+      <p>{{project.description}}</p>
+
+      {% empty %}
+  <div class="row">
+    <h2 class="text-center">There are no Projects yet</h2>
+  </div>
+
+   {% endfor %}
+
+ </div>
+ </div>
+
+</div>
+ {%endblock%}
