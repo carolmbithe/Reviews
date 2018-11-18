@@ -1,4 +1,4 @@
-# INSTAGRAM-CLONE
+# REVIEWS 
 Python 3.6 Application
 
 ## By Caroline Mumo
