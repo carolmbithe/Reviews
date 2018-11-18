@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404
 from .models import Profile,Project
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import NewProjectForm,NewProfileForm
+from .forms import NewProjectForm,NewProfileForm,NewRateForm
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import  Project
@@ -28,6 +28,21 @@ def new_project(request):
     else:
         form = NewProjectForm()
     return render(request, 'new_project.html', {"form": form})
+
+
+def rate(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewVoteForm(request.POST, request.FILES)
+        if form.is_valid():
+            project = form.save()
+            # project.profile = current_user
+            # project.save()
+        return redirect('index')
+
+    else:
+        form = NewRateForm()
+    return render(request, 'rate.html', {"form": form})
 
 
 def project(request,project_id):

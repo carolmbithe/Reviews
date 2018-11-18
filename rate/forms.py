@@ -13,3 +13,7 @@ class NewProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         exclude = ['profile']
+class NewRateForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        exclude = ['profile','title','image','description']

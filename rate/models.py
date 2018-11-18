@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import URLValidator
+from django.core.validators import URLValidator,MaxValueValidator,MinValueValidator
 from tinymce.models import HTMLField
 
 # Create your models here.
@@ -26,6 +26,13 @@ class Project(models.Model):
     description=models.TextField(blank=True,null=True)
     profile=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     link=models.TextField(validators=[URLValidator()],blank=True)
+    design=models.PositiveIntegerField(default=1,validators=[MaxValueValidator(10)],blank=True,null=True)
+    usability= models.PositiveIntegerField(default=1,validators=[MaxValueValidator(10)],blank=True,null=True)
+    content=models.PositiveIntegerField(default=1,validators=[MaxValueValidator(10)],blank=True,null=True)
+
+    # design=models.PositiveIntegerField(default=1,validators=[MinValueValidator(1),MaxValueValidator(10)],blank=True,null=True)
+    # usability= models.PositiveIntegerField(default=1,validators=[MinValueValidator(1),MaxValueValidator(10)],blank=True,null=True)
+    # content=models.PositiveIntegerField(default=1,validators=[MinValueValidator(1),MaxValueValidator(10)],blank=True,null=True)
 
     def __str__(self):
         return self.title
