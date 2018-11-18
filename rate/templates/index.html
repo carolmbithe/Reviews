@@ -13,21 +13,21 @@
 {% block content %}
 {{ block.super}}
 <div class="container">
- <h1>This is the index page </h1>
  <div class="row">
-   {% for project in projects %}
-   <div class="col-md-6">
+   <div class="col-md-4">
+     {% for project in projects %}
 
-      <p>{{project.title}}</p>
+
+      <strong><p>{{project.title}}</p></strong>
       <a href="{% url 'project' project.id %}"> <img src="{{project.image.url}}" class="img-responsive" alt="Image"></a>
       <p>{{project.description}}</p>
       <p><a href="{{project.link}}"> {{project.link}}</a></p>
       <p><a href="{%url 'rate'%}">Rate</a></p>
 
             {% empty %}
-  <div class="row">
+  <!-- <div class="row"> -->
     <h2 class="text-center">There are no Projects yet</h2>
-  </div>
+  <!-- </div> -->
 
    {% endfor %}
 
