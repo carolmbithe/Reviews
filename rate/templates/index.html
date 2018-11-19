@@ -20,8 +20,7 @@
       <strong><p>{{project.title}}</p></strong>
       <a href="{% url 'project' project.id %}"> <img src="{{project.image.url}}" class="img-responsive" alt="Image"></a>
       <p>{{project.description}}</p>
-      <p><a href="{{project.link}}"> {{project.link}}</a></p>
-      <p><a href="{%url 'rate'%}">Rate</a></p>
+
 
             {% empty %}
   <!-- <div class="row"> -->

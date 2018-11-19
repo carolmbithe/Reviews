@@ -13,7 +13,7 @@ from .serializer import ProjectSerializer,ProfileSerializer
 @login_required(login_url='/accounts/login/')
 def index(request):
     projects=Project.get_projects()
-    
+
     return render(request,'index.html',{"projects":projects})
 
 def new_project(request):
@@ -39,19 +39,52 @@ def rate(request):
             project = form.save()
             # project.profile = current_user
             # project.save()
-        return redirect('index')
+        return redirect('project')
 
     else:
         form = NewRateForm()
     return render(request, 'rate.html', {"form": form})
 
 
+# def project(request,project_id):
+#
+#     project=Project.objects.get(id=project_id)
+#     rating = round(((project.design + project.usability + project.content)/3),2)
+#
+#     if request.method == 'POST':
+#         form = NewRateForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             project = form.save()
+#             # project.profile = current_user
+#             # project.save()
+#         return redirect('project')
+#
+#     return render(request,"project.html",{"project":project})
+
 def project(request,project_id):
-    try:
-        project=Project.objects.get(id=project_id)
-    except ObjectDoesNotExist:
-        raise Http404()
-    return render(request,"project.html",{"project":project})
+   project = Project.objects.get(id=project_id)
+   rating = round(((project.design + project.usability + project.content)/3),2)
+   if request.method == 'POST':
+       form = NewRateForm(request.POST,request.FILES)
+       if form.is_valid:
+           if project.design == 0:
+               project.design = int(request.POST['design'])
+           else:
+               project.design = (project.design + int(request.POST['design']))/2
+           if project.usability == 0:
+               project.usability = int(request.POST['usability'])
+           else:
+               project.usability = (project.design + int(request.POST['usability']))/2
+           if project.content == 0:
+               project.content = int(request.POST['content'])
+           else:
+               project.content = (project.design + int(request.POST['content']))/2
+           project.save()
+           return redirect(reverse('project',args=[project.id]))
+   else:
+       form = NewRateForm()
+   return render(request,'project.html',{'form':form,'project':project,'rating':rating})
+
 
 def profile(request):
     current_user=request.user
