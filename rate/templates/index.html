@@ -1,7 +1,5 @@
 {%extends 'base.html'%}
 
-
-
 <!DOCTYPE html>
 <html>
 
@@ -11,11 +9,12 @@
 </head>
 <body>
 {% block content %}
-{{ block.super}}
+<!-- {{ block.super}} -->
 <div class="container">
  <div class="row">
-   <div class="col-md-4">
-     {% for project in projects %}
+
+     <div class="col-sm-6 col-md-6">
+       {% for project in projects %}
 
 
       <strong><p>{{project.title}}</p></strong>
@@ -28,13 +27,13 @@
   <!-- <div class="row"> -->
     <h2 class="text-center">There are no Projects yet</h2>
   <!-- </div> -->
-
+</div>
    {% endfor %}
-
- </div>
  </div>
 
 </div>
+
  {%endblock%}
+</div>
 </body>
 </html>

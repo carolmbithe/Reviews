@@ -13,6 +13,7 @@ from .serializer import ProjectSerializer,ProfileSerializer
 @login_required(login_url='/accounts/login/')
 def index(request):
     projects=Project.get_projects()
+    
     return render(request,'index.html',{"projects":projects})
 
 def new_project(request):
@@ -33,7 +34,7 @@ def new_project(request):
 def rate(request):
     current_user = request.user
     if request.method == 'POST':
-        form = NewVoteForm(request.POST, request.FILES)
+        form = NewRateForm(request.POST, request.FILES)
         if form.is_valid():
             project = form.save()
             # project.profile = current_user
