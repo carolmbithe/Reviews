@@ -27,7 +27,7 @@ class ProjectTestClass(TestCase):
 
 
     def setUp(self):
-        self.new_project=Image(image="image.jpeg",name="Flower",caption="Naturelover",pub_date="two minutes ago",likes=4)
+        self.new_project=Project(title="Instagram",image="image.jpeg",description="best social site",link="https://w3resource.com",design=4,usability=4,content=4)
 
     def test_instance(self):
         self.assertTrue(isinstance(self.new_project,Project))
@@ -37,13 +37,13 @@ class ProjectTestClass(TestCase):
         '''
         Function that tests whether an image is saved to database
         '''
-        self.new_image.save_project()
-        projects = Image.objects.all()
+        self.new_project.save_project()
+        projects = Project.objects.all()
         self.assertTrue(len(projects) > 0)
 
     def test_delete_method(self):
         '''
         Function that tests whether an image can be deleted from the database
         '''
-        self.new_image.save_project()
-        self.new_image.delete_project()
+        self.new_project.save_project()
+        self.new_project.delete_project()

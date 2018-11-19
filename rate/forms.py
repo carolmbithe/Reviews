@@ -16,4 +16,4 @@ class NewProjectForm(forms.ModelForm):
 class NewRateForm(forms.ModelForm):
     class Meta:
         model = Project
-        exclude = ['profile','title','image','description']
+        exclude = ['profile','title','image','description','link']
