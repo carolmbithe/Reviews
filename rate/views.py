@@ -46,20 +46,11 @@ def rate(request):
     return render(request, 'rate.html', {"form": form})
 
 
-# def project(request,project_id):
-#
-#     project=Project.objects.get(id=project_id)
-#     rating = round(((project.design + project.usability + project.content)/3),2)
-#
-#     if request.method == 'POST':
-#         form = NewRateForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             project = form.save()
-#             # project.profile = current_user
-#             # project.save()
-#         return redirect('project')
-#
-#     return render(request,"project.html",{"project":project})
+def projectdetails(request,project_id):
+
+    project=Project.objects.get(id=project_id)
+
+    return render(request,"projectdetails.html",{"project":project})
 
 def project(request,project_id):
    project = Project.objects.get(id=project_id)
@@ -80,7 +71,7 @@ def project(request,project_id):
            else:
                project.content = (project.design + int(request.POST['content']))/2
            project.save()
-           return redirect(reverse('project',args=[project.id]))
+
    else:
        form = NewRateForm()
    return render(request,'project.html',{'form':form,'project':project,'rating':rating})
@@ -100,7 +91,6 @@ def profile(request):
 
 def edit_profile(request):
     current_user=request.user
-    # profile = Profile.objects.get(user=current_user)
 
     if request.method == 'POST':
         form =NewProfileForm(request.POST,request.FILES)

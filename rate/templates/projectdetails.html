@@ -2,6 +2,8 @@
 {% load static %}
 {% load staticfiles %}
 {% load bootstrap3 %}
+
+
 <!DOCTYPE html>
 <html>
 
@@ -9,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body style="background-color:#FCFDFE">
+<body>
 {% block content %}
 {{block.super}}
 
@@ -26,7 +28,6 @@
    <div class="row">
      <p>{{project.description}}</p>
      <p><a href="{{project.link}}"> {{project.link}}</a></p>
-     <a  data-toggle="modal" data-target="#settings" aria-hidden="true"style="color:black;" ><button type="button" class="btn btn-info" name="button"> Rate</button></a>
 
 <!-- <p><strong>design</strong>  {{project.design}} <strong>usability</strong>   {{project.usability}} <strong>content</strong>  {{project.content}}</p> -->
 
@@ -41,20 +42,7 @@
 </div>
 
 </div>
-<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-          <div class="modal-body">
-            <form  action="/project/{{project.id}}" method="post" enctype="multipart/form-data">
-              {%csrf_token%}
 
-              {% bootstrap_form form %}
-              <input type="submit" class="btn btn-success btn-lg" value="Post">
-            </form>
-          </div>
-      </div>
-  </div>
-</div>
 {% endblock %}
 
 </body>

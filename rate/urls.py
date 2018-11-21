@@ -12,6 +12,7 @@ urlpatterns=[
 
     url(r'^new/project$', views.new_project, name='new-project'),
     url(r'^project/(\d+)',views.project,name ='project'),
+    url(r'^projectdetails/(\d+)',views.projectdetails,name ='projectdetails'),
     url(r'^api/project/$', views.ProjectList.as_view()),
     url(r'^api/profile/$', views.ProfileList.as_view()),
 
