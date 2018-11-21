@@ -1,4 +1,4 @@
-# REVIEWS 
+# REVIEWS
 Python 3.6 Application
 
 ## By Caroline Mumo
@@ -15,7 +15,7 @@ You can install this app by cloning the repository from this link https://github
 * Download the latest version of pip in the virtual environment: $ curl https://bootstrap.pypa.io/get-pip.py | python pip install -r requirements.txt</br  >
 
 ## Live link
-You can find the published site of the application here.
+You can find the published site of the application here.https://review003.herokuapp.com/
 
 ## Known Bugs
 There are no known bugs so far,everything is working.
